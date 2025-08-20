@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lanzamiento – Cuenta atrás</title>
+  <meta name="description" content="Cuenta atrás hacia el lanzamiento: 29/10/2025 00:00 (España)" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      max-width: 900px;
+      width: 100%;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      border: 1px solid #eee;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      background: #fafafa;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(3px);
+    }
+    .overlay h1 {
+      font-size: clamp(22px, 4.5vw, 48px);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #111;
+      letter-spacing: 0.02em;
+    }
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 10px;
+    }
+    .unit {
+      flex: 1 1 80px;
+      min-width: 80px;
+      background: #f9f9f9;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+    }
+    .val {
+      font-size: clamp(28px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: iridescent 6s ease infinite;
+    }
+    @keyframes iridescent {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      margin-top: 4px;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <!-- Imagen placeholder elegante; sustitúyela por tu foto/dibujo -->
+      <img src="https://picsum.photos/900/500" alt="Imagen promocional elegante" />
+      <div class="overlay">
+        <h1>Cosas que solo pasan cada diez años</h1>
+      </div>
+    </div>
+
+    <div class="countdown" aria-live="polite">
+      <div class="unit"><div class="val" id="d">00</div><div class="label">Días</div></div>
+      <div class="unit"><div class="val" id="h">00</div><div class="label">Horas</div></div>
+      <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
+      <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
+    </div>
+
+    <footer>Cuenta atrás hacia las 00:00 del 29/10/2025 (hora de España).</footer>
+  </div>
+
+  <script>
+    // Fecha objetivo: 29 de octubre de 2025, 00:00 CET (UTC+1).
+    // UTC equivalente: 2025-10-28 23:00:00Z
+    const targetUTC = Date.UTC(2025, 9, 28, 23, 0, 0);
+
+    const elD = document.getElementById('d');
+    const elH = document.getElementById('h');
+    const elM = document.getElementById('m');
+    const elS = document.getElementById('s');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now = Date.now();
+      let diff = targetUTC - now;
+      if (diff < 0) diff = 0;
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      elD.textContent = pad(days);
+      elH.textContent = pad(hours);
+      elM.textContent = pad(mins);
+      elS.textContent = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
