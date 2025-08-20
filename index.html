@@ -1,93 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lanzamiento – Cuenta atrás</title>
-  <meta name="description" content="Cuenta atrás hacia el lanzamiento: 29/10/2025 00:00 (España)" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10/25</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
+
+    @font-face {
+      font-family: 'Helvetica Neue Condensed';
+      src: url('./fonts/HelveticaNeueCondensedBold.ttf') format('ttf'),
+            url('./fonts/HelveticaNeueCondensedBold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Merriweather', sans-serif;
+      font-style: italic;
       background: #fff;
       color: #111;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-    }
-    .container {
       text-align: center;
-      padding: 20px;
-      max-width: 900px;
-      width: 100%;
+      padding: 40px 20px;
     }
-    .hero {
-      position: relative;
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 30px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-      border: 1px solid #eee;
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
     }
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      background: #fafafa;
-    }
-    .overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(3px);
-    }
-    .overlay h1 {
-      font-size: clamp(22px, 4.5vw, 48px);
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #111;
-      letter-spacing: 0.02em;
-    }
+
     .countdown {
       display: flex;
+      font-style:normal;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 18px;
-      margin-top: 10px;
+      margin-bottom: 40px;
     }
+
     .unit {
-      flex: 1 1 80px;
       min-width: 80px;
-      background: #f9f9f9;
-      border-radius: 14px;
       padding: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      background: #f9f9f9;
       border: 1px solid #eee;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
+
     .val {
-      font-size: clamp(28px, 6vw, 64px);
-      font-weight: 800;
-      line-height: 1;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
       background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: iridescent 6s ease infinite;
     }
+
     @keyframes iridescent {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
     .label {
       font-size: 12px;
       text-transform: uppercase;
@@ -95,49 +84,89 @@
       color: #666;
       margin-top: 4px;
     }
-    footer {
+
+    .image {
       margin-top: 20px;
+      max-width: 90%;
+    }
+
+    .image img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      margin-top: 30px;
       font-size: 12px;
       color: #999;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <!-- Imagen placeholder elegante; sustitúyela por tu foto/dibujo -->
-      <img src="https://picsum.photos/900/500" alt="Imagen promocional elegante" />
-      <div class="overlay">
-        <h1>Cosas que solo pasan cada diez años</h1>
-      </div>
-    </div>
+  <h1>Cosas que solo pasan cada diez años</h1>
 
-    <div class="countdown" aria-live="polite">
-      <div class="unit"><div class="val" id="d">00</div><div class="label">Días</div></div>
-      <div class="unit"><div class="val" id="h">00</div><div class="label">Horas</div></div>
-      <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
-      <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
-    </div>
-
-    <footer>Cuenta atrás hacia las 00:00 del 29/10/2025 (hora de España).</footer>
+  <div class="iridescent-img">
+    <img src="images/legado_empty.png" alt="Promocional">
   </div>
 
-  <script>
-    // Fecha objetivo: 29 de octubre de 2025, 00:00 CET (UTC+1).
-    // UTC equivalente: 2025-10-28 23:00:00Z
-    const targetUTC = Date.UTC(2025, 9, 28, 23, 0, 0);
+  <div class="countdown" aria-live="polite">
+    <div class="unit"><div class="val" id="d">00</div><div class="label">Días</div></div>
+    <div class="unit"><div class="val" id="h">00</div><div class="label">Horas</div></div>
+    <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
+    <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
+  </div>
 
+<style>
+.iridescent-img {
+  position: relative;
+  display: inline-block;
+  width: 400px; /* ajusta */
+  height: auto;
+  overflow: hidden;
+}
+
+.iridescent-img img {
+  width: 100%;
+  display: block;
+
+  /* Aplicamos gradiente iridiscente sobre la imagen */
+  -webkit-mask-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,1));
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+
+  /* Fondo iridiscente */
+  background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
+  background-size: 300% 300%;
+  animation: iridescent 6s ease infinite;
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+}
+
+/* Misma animación que en los números */
+@keyframes iridescent {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
+
+  <script>
     const elD = document.getElementById('d');
     const elH = document.getElementById('h');
     const elM = document.getElementById('m');
     const elS = document.getElementById('s');
+
+    const targetUTC = Date.UTC(2025, 9, 28, 23, 0, 0); // 29/10/2025 00:00 CET
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
     function tick() {
       const now = Date.now();
       let diff = targetUTC - now;
-      if (diff < 0) diff = 0;
+      if(diff < 0) diff = 0;
+
       const sec = Math.floor(diff / 1000);
       const days = Math.floor(sec / 86400);
       const hours = Math.floor((sec % 86400) / 3600);
