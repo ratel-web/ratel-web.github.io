@@ -5,117 +5,307 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>10/25</title>
   <link rel="icon" type="image/x-icon" href="/images/1025_favicon.ico">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Kings&display=swap');    
-    @font-face {
-      font-family: 'Helvetica Neue Condensed';
-      src: url('./fonts/HelveticaNeueCondensedBold.ttf') format('ttf'),
-            url('./fonts/HelveticaNeueCondensedBold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Kings&display=swap');    
 
-     @font-face {
-      font-family: 'Dutch Brigade';
-      src: url('./fonts/DutchBrigade.ttf') format('ttf'),
-            url('./fonts/DutchBrigade.otf') format('otf'),
-            url('./fonts/DutchBrigade.woff') format('woff'),
-            url('./fonts/DutchBrigade.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
+  @font-face {
+    font-family: 'Helvetica Neue Condensed';
+    src: url('./fonts/HelveticaNeueCondensedBold.ttf') format('ttf'),
+         url('./fonts/HelveticaNeueCondensedBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
 
+  @font-face {
+    font-family: 'Dutch Brigade';
+    src: url('./fonts/DutchBrigade.ttf') format('ttf'),
+         url('./fonts/DutchBrigade.otf') format('otf'),
+         url('./fonts/DutchBrigade.woff') format('woff'),
+         url('./fonts/DutchBrigade.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Clairvaux';
+    src: url('./fonts/Clairvaux.ttf') format('ttf'),
+         url('./fonts/Clairvaux.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Clairvaux';
+    background: #fff;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  h1 {
+    margin-top: 3%;
+    font-weight: 300;
+    letter-spacing: 0.05vh;
+    mix-blend-mode: multiply;
+    color: rgb(203, 203, 203);
+    opacity: 0.6;
+    z-index: 100;
+  }
+
+  h1 span:nth-child(1) { font-size: 12vh; margin-left: 0.0vw; }
+  h1 span:nth-child(2) { font-size: 10vh; margin-left: 0.4vw; }
+  h1 span:nth-child(3) { font-size: 9vh; margin-left: 0.2vw; }
+  h1 span:nth-child(4) { font-size: 12vh; margin-left: 0vw; }
+
+  h2 {
+    font-weight: 300;
+    letter-spacing: 0.05vh;
+    mix-blend-mode: multiply;
+    color: #7de0ad;
+    opacity: 0.8;
+    z-index: 100;
+    margin-top: -7.5vh;
+  }
+
+  h2 span:nth-child(1) { font-size: 9vh; margin-left: 0vw;}
+  h2 span:nth-child(2) { font-size: 14vh; margin-left: 0.7vw;}
+  h2 span:nth-child(3) { font-size: 19vh; margin-left: 0.5vw;}
+
+  .countdown {
+    position: fixed;
+    display: flex;
+    font-style:normal;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 67.5vh;
+    z-index: 25;
+  }
+
+  .unit {
+    min-width: 80px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .val {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: iridescent 6s ease infinite;
+  }
+
+  @keyframes iridescent {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .iridescent-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30vw;
+    height: auto;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .iridescent-img img {
+    width: 100%;
+    display: block;
+    -webkit-mask-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,1));
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
+    background-size: 300% 300%;
+    animation: iridescent 6s ease infinite;
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
+  }
+
+  .circle-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('images/alchemy-circle-black.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.03;
+    transform: translate(-50%, -50%);
+    animation: spin 60s linear infinite;
+    z-index: 20;
+  }
+
+  @keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 7.5vh;
+    width: 100%;
+  }
+
+  .music-icons-footer {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    z-index: 9999;
+  }
+
+  .icon-link {
+    color: #a5a5a5;
+    font-size: 2em;
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+
+  .icon-link:hover {
+    color: #2d2d2d;
+  }
+
+  /* ======== MOBILE OPTIMIZATION ======== */
+  @media (max-width: 768px) {
     body {
-      margin: 0;
-      font-family: 'Kings';
-      background: #fff;
-      color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 50px 20px;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 300;
-      letter-spacing: 1px;
-      margin-bottom: 40px;
+      margin-top: 4vh;
+    }
+
+    h1 span:nth-child(1) { font-size: 6vh; }
+    h1 span:nth-child(2) { font-size: 5.5vh; }
+    h1 span:nth-child(3) { font-size: 5vh; }
+    h1 span:nth-child(4) { font-size: 6vh; }
+
+    h2 {
+      margin-top: -4vh;
+    }
+    h2 span:nth-child(1) { font-size: 5vh; }
+    h2 span:nth-child(2) { font-size: 6.5vh; }
+    h2 span:nth-child(3) { font-size: 8vh; }
+
+    .iridescent-img {
+      width: 55vw;
+      top: 50%;
     }
 
     .countdown {
-      display: flex;
-      font-style:normal;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 40px;
+      margin-top: 65vh;
+      gap: 8px;
+      scale: 0.9;
     }
 
     .unit {
-      min-width: 80px;
-      padding: 16px;
-      border-radius: 12px;
-      background: #f9f9f9;
-      border: 1px solid #eee;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      min-width: 60px;
+      padding: 10px;
     }
 
     .val {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
-      background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: iridescent 6s ease infinite;
-    }
-
-    @keyframes iridescent {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #666;
-      margin-top: 4px;
-    }
-
-    .image {
-      margin-top: 20px;
-      max-width: 90%;
-    }
-
-    .image img {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      font-size: 1.6rem;
     }
 
     footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #999;
+      bottom: 10px;
     }
-  </style>
+
+    .icon-link {
+      font-size: 1.5em;
+      margin: 0 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 span:nth-child(1),
+    h1 span:nth-child(2),
+    h1 span:nth-child(3),
+    h1 span:nth-child(4) {
+      font-size: 5vh;
+    }
+
+    h2 span:nth-child(1),
+    h2 span:nth-child(2),
+    h2 span:nth-child(3) {
+      font-size: 5.5vh;
+    }
+
+    .iridescent-img {
+      width: 65vw;
+    }
+
+    .countdown {
+      margin-top: 63vh;
+      gap: 6px;
+      scale: 0.8;
+    }
+
+    .unit {
+      min-width: 55px;
+      padding: 8px;
+    }
+
+    .val {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+
+
 </head>
 <body>
-  <h1>Cosas que solo pasan cada diez años</h1>
+
+  <div class="circle-background"></div>
+
+  <h1>
+    <span>Cosas</span>
+    <span>Que</span>
+    <span>Solo</span>
+    <span>Pasan</span>
+  </h1>
+    <h2>
+    <span>Cada</span>
+    <span>Diez</span>
+    <span>Años</span>
+  </h2>
+
 
   <div class="iridescent-img">
     <img src="images/legado_empty.png" alt="Promocional">
@@ -127,40 +317,6 @@
     <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
     <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
   </div>
-
-<style>
-.iridescent-img {
-  position: relative;
-  display: inline-block;
-  width: 400px; /* ajusta */
-  height: auto;
-  overflow: hidden;
-}
-
-.iridescent-img img {
-  width: 100%;
-  display: block;
-
-  /* Aplicamos gradiente iridiscente sobre la imagen */
-  -webkit-mask-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,1));
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: cover;
-
-  /* Fondo iridiscente */
-  background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
-  background-size: 300% 300%;
-  animation: iridescent 6s ease infinite;
-  -webkit-mask-composite: destination-in;
-  mask-composite: intersect;
-}
-
-/* Misma animación que en los números */
-@keyframes iridescent {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-</style>
 
   <script>
     const elD = document.getElementById('d');
@@ -192,5 +348,26 @@
     tick();
     setInterval(tick, 1000);
   </script>
+
+
+<footer class="music-icons-footer">
+  <!-- Spotify -->
+  <a href="https://open.spotify.com/" target="_blank" aria-label="Spotify" class="icon-link">
+    <i class="fab fa-spotify"></i>
+  </a>
+  <!-- Deezer -->
+  <a href="https://www.deezer.com/" target="_blank" aria-label="Deezer" class="icon-link">
+    <i class="fab fa-deezer"></i>
+  </a>
+  <!-- Apple Music -->
+  <a href="https://music.apple.com/" target="_blank" aria-label="Apple Music" class="icon-link">
+    <i class="fab fa-apple"></i>
+  </a>
+    <!-- Apple Music -->
+  <a href="https://music.youtube.com/" target="_blank" aria-label="YouTube" class="icon-link">
+    <i class="fab fa-youtube"></i>
+  </a>
+</footer>
 </body>
+
 </html>
