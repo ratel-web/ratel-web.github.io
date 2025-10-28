@@ -25,33 +25,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+  :root {
+  --spin-duration: 1s;
+  }
+
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Kings&display=swap');    
-
-  @font-face {
-    font-family: 'Helvetica Neue Condensed';
-    src: url('./fonts/HelveticaNeueCondensedBold.ttf') format('ttf'),
-         url('./fonts/HelveticaNeueCondensedBold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Dutch Brigade';
-    src: url('./fonts/DutchBrigade.ttf') format('ttf'),
-         url('./fonts/DutchBrigade.otf') format('otf'),
-         url('./fonts/DutchBrigade.woff') format('woff'),
-         url('./fonts/DutchBrigade.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Kings&display=swap');
 
   @font-face {
     font-family: 'Clairvaux';
@@ -78,34 +57,71 @@
     width: 100vw;
   }
 
-  h1 {
-    margin-top: 3%;
-    font-weight: 300;
-    letter-spacing: 0.05vh;
-    mix-blend-mode: multiply;
-    color: rgb(203, 203, 203);
-    opacity: 0.6;
-    z-index: 100;
+  .iridescent-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30vw;
+    height: auto;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 10;
   }
 
-  h1 span:nth-child(1) { font-size: 12vh; margin-left: 0.0vw; }
-  h1 span:nth-child(2) { font-size: 10vh; margin-left: 0.4vw; }
-  h1 span:nth-child(3) { font-size: 9vh; margin-left: 0.2vw; }
-  h1 span:nth-child(4) { font-size: 12vh; margin-left: 0vw; }
-
-  h2 {
-    font-weight: 300;
-    letter-spacing: 0.05vh;
-    mix-blend-mode: multiply;
-    color: #7de0ad;
-    opacity: 0.8;
-    z-index: 100;
-    margin-top: -7.5vh;
+  .iridescent-img img {
+    width: 100%;
+    display: block;
+    -webkit-mask-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,1));
+    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
+    background-size: 300% 300%;
+    animation: iridescent 6s ease infinite;
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
   }
 
-  h2 span:nth-child(1) { font-size: 9vh; margin-left: 0vw;}
-  h2 span:nth-child(2) { font-size: 14vh; margin-left: 0.7vw;}
-  h2 span:nth-child(3) { font-size: 19vh; margin-left: 0.5vw;}
+  @keyframes iridescent {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .circle-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('images/alchemy-circle-black.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.04;
+    transform: translate(-50%, -50%);
+    animation: spin var(--spin-duration) linear infinite;
+    z-index: 20;
+  }
+
+    footer {
+    position: fixed;
+    bottom: 7.5vh;
+    width: 100%;
+  }
+  
+  .icon-link {
+    color: #bebebe;
+    font-size: 2em;
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+
+  .icon-link:hover {
+    opacity: 1;
+  }
+
+  @keyframes spin {
+    from { transform:translate(-50%, -50%) rotate(0deg); }
+    to { transform:translate(-50%, -50%) rotate(360deg); }
+  }
 
   .countdown {
     position: fixed;
@@ -137,12 +153,6 @@
     animation: iridescent 6s ease infinite;
   }
 
-  @keyframes iridescent {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
   .label {
     font-size: 12px;
     text-transform: uppercase;
@@ -151,80 +161,252 @@
     margin-top: 4px;
   }
 
-  .iridescent-img {
-    position: fixed;
+  #final-text {
+    opacity: 0;
+    width: 60vw;
+    font-size: 2.9vh;
+    line-height: 1.55;
+    position: absolute;
     top: 50%;
     left: 50%;
-    width: 30vw;
-    height: auto;
     transform: translate(-50%, -50%);
-    overflow: hidden;
-    z-index: 10;
+    transition: all 1.2s ease;
+    z-index: 1000;
+    overflow: visible;
   }
 
-  .iridescent-img img {
-    width: 100%;
-    display: block;
-    -webkit-mask-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,1));
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80, #06b6d4, #f472b6);
-    background-size: 300% 300%;
-    animation: iridescent 6s ease infinite;
-    -webkit-mask-composite: destination-in;
-    mask-composite: intersect;
-  }
+.reveal-block {
+  opacity: 0;
+  transition: opacity .9s ease, transform .9s ease;
+  transform: translateY(12px);
+}
 
-  .circle-background {
-    position: fixed;
+.reveal-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fadeOut {
+  opacity: 0 !important;
+  transition: opacity .9s ease;
+}
+
+#page1, #page2 {
+  pointer-events:none;
+}
+
+#page2 {
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+#page2.visible {
+  opacity: 1;
+}
+
+.circle-fade {
+  opacity: 0 !important;
+  transition: opacity 2.2s ease-in-out;
+}
+
+    #artwork {
+      position:fixed;
+      inset:0;
+      background: url('images/portada.png') center/cover no-repeat fixed;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 2.2s ease-in-out, transform 2.2s ease-in-out;
+      z-index:1; /* sits below main UI (which will be z-index:5+) */
+      filter: saturate(.95) contrast(.95);
+    }
+
+
+#text-aura {
+    position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('images/alchemy-circle-black.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.03;
-    transform: translate(-50%, -50%);
-    animation: spin 60s linear infinite;
-    z-index: 20;
+    width: 38vw;
+    height: 38vw;
+    background: radial-gradient(circle, rgba(125,224,173,0.15), transparent 70%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.8);
+    transition: all 3s ease;
+    filter: blur(30px);
+    z-index: 0;
   }
 
-  @keyframes spin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+  #text-aura.on {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 
-  footer {
+.herencia {
+  font-size: 8vh;
+  font-family: 'Clairvaux';
+  margin-top: 2vh;
+  opacity: 0;
+  transition: opacity 2s ease;
+  letter-spacing: .04em;
+  font-weight: 500;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    #ff6ec4,
+    #7873f5,
+    #4ade80,
+    #06b6d4,
+    #f472b6,
+    #c084fc
+  );
+
+  background-size: 400% 400%;
+  animation: holographic 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(125, 224, 173, 0.25));
+  text-shadow:
+    0 0 12px rgba(125,224,173,0.15),
+    0 0 4px rgba(125,224,173,0.2);
+}
+
+.herencia-link {
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 9999;
+  display: inline-block;
+}
+
+.herencia-link:hover .herencia {
+  text-shadow: 0 0 14px rgba(125,224,173,0.35);
+  transition: filter .25s ease;
+}
+
+.herencia.visible {
+  opacity: 1;
+  animation:
+    holographic 6s ease infinite,
+    pulse 3.5s ease-in-out infinite;
+  cursor: pointer !important;
+  z-index: 10000;
+  pointer-events: auto;
+
+}
+
+.holoicons {  
+  color: #bebebe;
+  background: linear-gradient(
+    135deg,
+    #ff6ec4,
+    #7873f5,
+    #4ade80,
+    #06b6d4,
+    #f472b6,
+    #c084fc
+  );
+  background-size: 200% 200%;
+  animation: holographic 12s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+
+  @keyframes holographic {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+  @media(max-width: 768px){
+    body {
+      overflow-y: auto;
+      height: auto;
+    }
+  #final-text{
+    margin-top: 17vh !important;
+    width:80vw;
+    min-height:100vh;
+    padding:8vh 0;
+    margin:0 auto;
+    pointer-events:auto;
+    font-size: 2.2vh;
+  }
+    .iridescent-img { width: 60vw; top: 38%; }
+  }
+
+  .platform-links {
+    margin-top: 2vh;
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+
+  .platform-links a {
+    margin: 0 10px;
+    font-size: 1.6em;
+    color: #777;
+    transition: .3s;
+  }
+
+  #hidden-date {
     position: fixed;
-    bottom: 7.5vh;
-    width: 100%;
+    bottom: 6vh;
+    right: 5vw;
+    font-family: 'Clairvaux';
+    font-size: 3vh;
+    color: #7de0ad;
+    opacity: 0;
+    transition: opacity .7s ease;
+    pointer-events: none;
+    z-index: 9999;
   }
+
+  #hidden-date.show { opacity:.85; }
+
+  h1 {
+    margin-top: 3%;
+    font-weight: 300;
+    letter-spacing: 0.05vh;
+    mix-blend-mode: multiply;
+    color: rgb(203, 203, 203);
+    opacity: 0.6;
+    z-index: 100;
+  }
+
+  h1 span:nth-child(1) { font-size: 12vh; margin-left: 0.0vw; }
+  h1 span:nth-child(2) { font-size: 10vh; margin-left: 0.4vw; }
+  h1 span:nth-child(3) { font-size: 9vh; margin-left: 0.2vw; }
+  h1 span:nth-child(4) { font-size: 12vh; margin-left: 0vw; }
+
+  h2 {
+    font-weight: 300;
+    letter-spacing: 0.05vh;
+    mix-blend-mode: multiply;
+    color: #7de0ad;
+    opacity: 0.8;
+    z-index: 100;
+    margin-top: -7.5vh;
+  }
+
+  h2 span:nth-child(1) { font-size: 9vh; margin-left: 0vw;}
+  h2 span:nth-child(2) { font-size: 14vh; margin-left: 0.7vw;}
+  h2 span:nth-child(3) { font-size: 19vh; margin-left: 0.5vw;}
 
   .music-icons-footer {
     display: flex;
     justify-content: center;
     background-color: transparent;
     z-index: 9999;
+    opacity: 0.6;
   }
 
-  .icon-link {
-    color: #a5a5a5;
-    font-size: 2em;
-    margin: 0 15px;
-    transition: color 0.3s;
-  }
-
-  .icon-link:hover {
-    color: #2d2d2d;
-  }
-
-  /* ======== MOBILE OPTIMIZATION ======== */
-  @media (max-width: 768px) {
-    body {
-      overflow: hidden;
-    }
+@media (max-width: 768px) {
 
     h1 {
       margin-top: 10vh;
@@ -241,156 +423,325 @@
     h2 span:nth-child(1) { font-size: 5vh; }
     h2 span:nth-child(2) { font-size: 6.5vh; }
     h2 span:nth-child(3) { font-size: 8vh; }
-
-    .iridescent-img {
-      width: 55vw;
-      top: 50%;
-    }
-
-    .countdown {
-      margin-top: 65vh;
-      gap: 8px;
-      scale: 0.9;
-    }
-
-    .unit {
-      min-width: 60px;
-      padding: 10px;
-    }
-
-    .val {
-      font-size: 1.6rem;
-    }
-
-    footer {
-      bottom: 5.5vh;
-    }
-
-    .icon-link {
-      font-size: 1.5em;
-      margin: 0 10px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    h1 span:nth-child(1),
-    h1 span:nth-child(2),
-    h1 span:nth-child(3),
-    h1 span:nth-child(4) {
-      font-size: 5vh;
-    }
-
-    h2 span:nth-child(1),
-    h2 span:nth-child(2),
-    h2 span:nth-child(3) {
-      font-size: 5.5vh;
-    }
-
-    .iridescent-img {
-      width: 65vw;
-    }
-
-    .countdown {
-      margin-top: 63vh;
-      gap: 6px;
-      scale: 0.8;
-    }
-
-    .unit {
-      min-width: 55px;
-      padding: 8px;
-    }
-
-    .val {
-      font-size: 1.4rem;
-    }
   }
 </style>
-
-
 </head>
+
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K69QMZG2"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-  <div class="circle-background"></div>
+<div id="artwork" aria-hidden="true"></div>
 
-  <h1>
+<div id="circle-background" class="circle-background"></div>
+
+  <h1 id="title">
     <span>Cosas</span>
     <span>Que</span>
     <span>Solo</span>
     <span>Pasan</span>
   </h1>
-    <h2>
+    <h2 id="subtitle">
     <span>Cada</span>
     <span>Diez</span>
     <span>Años</span>
   </h2>
 
 
-  <div class="iridescent-img">
-    <img src="images/legado_empty.png" alt="Promocional">
+<div class="iridescent-img" id="promo-img">
+  <img src="images/legado_empty.png">
+</div>
+
+<div class="countdown" id="countdown">
+  <div class="unit"><div class="val" id="d">00</div><div class="label">Días</div></div>
+  <div class="unit"><div class="val" id="h">00</div><div class="label">Horas</div></div>
+  <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
+  <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
+</div>
+
+<div id="text-aura"></div>
+
+<div id="final-text">
+
+  <div id="page1">
+    <p class="reveal-block">El 29 de octubre de 2015, C. Tangana lanzó 10/15: un EP histórico, indescriptible, de esos que cambian vidas. El nacimiento de un Ídolo.</p>
+
+    <p class="reveal-block">Una década después, el Ídolo yace sin vida. No volverá. Al menos, no de la forma de la que lo conocimos. No obstante, hace mucho que ya cumplió su misión, dejando huella en muchos de nosotros.</p>
+
+    <p class="reveal-block">Influenciándonos. Cambiándonos. Cómo nos relacionamos, cómo vivimos, cómo creamos.</p>
+
+    <p class="reveal-block">El Ídolo vivirá para siempre.</p>
   </div>
 
-  <div class="countdown" aria-live="polite">
-    <div class="unit"><div class="val" id="d">00</div><div class="label">Días</div></div>
-    <div class="unit"><div class="val" id="h">00</div><div class="label">Horas</div></div>
-    <div class="unit"><div class="val" id="m">00</div><div class="label">Minutos</div></div>
-    <div class="unit"><div class="val" id="s">00</div><div class="label">Segundos</div></div>
+  <div id="page2" style="display:none;">
+    <p class="reveal-block">Es justo responder. Ser agradecido. No solo con él; también con todxs aquellxs que nos han marcado, y han cambiado el curso de nuestras vidas.</p>
+
+    <p class="reveal-block">Porque gracias a ellxs existo.</p>
+
+    <p class="reveal-block">Este es un homenaje a todxs ellxs. Cinco rapsodias; una misma historia sobre la creación, la influencia y la liberación a través del arte.</p>
+
+    <p class="reveal-block">Por favor, siéntate a mi lado. Contemplemos juntos el germen de una nueva generación de ídolos. Repartámonos...</p>
+
+    <a href="https://distrokid.com/hyperfollow/ratel3/egotrip--vol-i--el-presagio-feat-0723studio" target="_blank" rel="noopener noreferrer" class="herencia-link">
+      <div class="herencia" id="herencia">La Herencia</div>
+    </a>
   </div>
 
-  <script>
-    const elD = document.getElementById('d');
-    const elH = document.getElementById('h');
-    const elM = document.getElementById('m');
-    const elS = document.getElementById('s');
-
-    const targetUTC = Date.UTC(2025, 9, 28, 23, 0, 0); // 29/10/2025 00:00 CET
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    function tick() {
-      const now = Date.now();
-      let diff = targetUTC - now;
-      if(diff < 0) diff = 0;
-
-      const sec = Math.floor(diff / 1000);
-      const days = Math.floor(sec / 86400);
-      const hours = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = sec % 60;
-
-      elD.textContent = pad(days);
-      elH.textContent = pad(hours);
-      elM.textContent = pad(mins);
-      elS.textContent = pad(secs);
-    }
-
-    tick();
-    setInterval(tick, 1000);
-  </script>
+</div>
 
 
 <footer class="music-icons-footer">
-  <!-- Spotify -->
-  <a href="https://open.spotify.com/" target="_blank" aria-label="Spotify" class="icon-link">
+
+  <a href="https://open.spotify.com/intl-es/artist/1tUOQFXxMrv1cOtMF4vwHx?si=-G00C7yPTn2ER47XtQ5FdQ" target="_blank" aria-label="Spotify" class="icon-link">
     <i class="fab fa-spotify"></i>
   </a>
-  <!-- Deezer -->
-  <a href="https://www.deezer.com/" target="_blank" aria-label="Deezer" class="icon-link">
-    <i class="fab fa-deezer"></i>
+
+  <a href="https://www.instagram.com/ratel.wav/" target="_blank" aria-label="Deezer" class="icon-link">
+    <i class="fab fa-instagram"></i>
   </a>
-  <!-- Apple Music -->
-  <a href="https://music.apple.com/" target="_blank" aria-label="Apple Music" class="icon-link">
-    <i class="fab fa-apple"></i>
-  </a>
-    <!-- Apple Music -->
-  <a href="https://music.youtube.com/" target="_blank" aria-label="YouTube" class="icon-link">
+
+  <a href="https://x.com/ratel_wav" target="_blank" aria-label="Deezer" class="icon-link">
+  <i class="fa-brands fa-twitter"></i>
+    </a>
+
+  <a href="https://www.youtube.com/@RATEL_wav" target="_blank" aria-label="YouTube" class="icon-link">
     <i class="fab fa-youtube"></i>
   </a>
 </footer>
-</body>
 
+<div id="hidden-date">14/12/25</div>
+
+<script>
+  const d=document.getElementById('d');
+  const h=document.getElementById('h');
+  const m=document.getElementById('m');
+  const s=document.getElementById('s');
+  const targetUTC = Date.UTC(2025, 8, 28, 23, 0, 0);
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+
+  let finished = false;
+
+  function tick(){
+    let diff = targetUTC - Date.now();
+
+    if (diff <= 1500 && !finished) {
+      finish();
+    }
+
+    if(diff < 0){ diff = 0; }
+
+    const sec = Math.floor(diff/1000);
+    const days=Math.floor(sec/86400);
+    const hours=Math.floor((sec%86400)/3600);
+    const mins=Math.floor((sec%3600)/60);
+    const secs=sec%60;
+
+    d.textContent = pad(days);
+    h.textContent = pad(hours);
+    m.textContent = pad(mins);
+    s.textContent = pad(secs);
+  }
+
+  function finish(){
+  if(finished) return;
+  finished = true;
+
+  document.getElementById("title").style.pointerEvents = "none";
+  document.getElementById("subtitle").style.pointerEvents = "none";
+  document.getElementById("promo-img").style.pointerEvents = "none";
+  document.getElementById("countdown").style.pointerEvents = "none";
+
+  document.getElementById("title").style.opacity = 0;
+  document.getElementById("subtitle").style.opacity = 0;
+  document.getElementById("promo-img").style.opacity = 0;
+  document.getElementById("countdown").style.opacity = 0;
+
+  setTimeout(()=>{
+    
+    document.body.style.overflowY = "auto";
+    document.getElementById("final-text").style.opacity = 0.7;
+    document.getElementById("final-text").style.transform="translate(-50%, -50%)";
+
+    setTimeout(() => {
+      revealFirstBlockPage1();
+    }, 600);
+
+    setTimeout(()=> {
+      document.getElementById("text-aura").classList.add("on");
+    }, 900);
+
+    let delay = 0;
+
+  },1200);
+}
+
+
+  tick();
+  setInterval(tick,1000);
+
+  /* KONAMI */
+  const secret = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight"];
+  let pos = 0;
+
+  window.addEventListener('keydown',(e)=>{
+    if(e.key===secret[pos]){
+      pos++;
+      if(pos===secret.length){
+        revealDate();
+        pos=0;
+      }
+    } else pos=0;
+  });
+
+  function revealDate(){
+    const el=document.getElementById("hidden-date");
+    el.classList.add("show");
+    if(navigator.vibrate) navigator.vibrate([60,30,60]);
+    setTimeout(()=>{ el.classList.remove("show"); },4000);
+  }
+
+  document.getElementById('herencia').addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+          
+let currentPage = 1;
+let index = 0;
+let waiting = false;
+
+function advanceText(){
+
+  if(waiting) return;
+
+  if(currentPage === 1){
+    const blocks = document.querySelectorAll("#page1 .reveal-block");
+
+    if(index < blocks.length){
+      blocks[index].classList.add("visible");
+      haptic([10]);
+      index++;
+
+      waiting = true;
+      setTimeout(()=> waiting=false, 400);
+
+    if(index === blocks.length){
+      setTimeout(()=>{
+        document.getElementById("page1").classList.add("fadeOut");
+        setTimeout(()=>{
+          document.getElementById("page1").style.display="none";
+          document.getElementById("page2").style.display="block";
+          document.getElementById("page2").classList.add("visible");
+          currentPage = 2;
+          index = 0;
+
+          setTimeout(()=>{
+            revealFirstBlockPage2();
+          }, 500);
+
+        },700);
+      }, 1800);
+    }
+
+
+    }
+
+  } else if(currentPage === 2){
+    const blocks = document.querySelectorAll("#page2 .reveal-block");
+
+    if(index < blocks.length){
+      blocks[index].classList.add("visible");
+      haptic([10]);
+      index++;
+
+      waiting = true;
+      setTimeout(()=> waiting=false, 400);
+
+      if(index === blocks.length){
+
+        setTimeout(()=>{
+          document.getElementById("herencia").classList.add("visible");
+          haptic([60, 40, 60]);
+        }, 1700);
+
+        setTimeout(()=>{
+
+          const art = document.getElementById('artwork');
+          if(art){
+              art.style.opacity = 0;
+              setTimeout(()=>{ art.style.opacity = 0.35; }, 500);
+              setTimeout(()=>{ slowDownCircle }, 1000);
+          }
+        }, 1000);
+
+        setTimeout(()=>{
+          activarHolografico();
+
+          let rumble = new Audio('/sound/snd_fragment.mp3');
+          rumble.volume = 0.14;
+          rumble.play();
+        }, 1900);
+             
+        }
+    }
+  }
+}
+
+const circle = document.getElementById("circle-background");
+let rotation = 0;
+let spinSpeed = 0.04; // initial speed
+let targetSpeed = spinSpeed;
+
+function animateSpin() {
+  rotation += spinSpeed;
+  circle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+ 
+  spinSpeed += (targetSpeed - spinSpeed) * 0.05;
+
+  requestAnimationFrame(animateSpin);
+}
+animateSpin();
+
+// external control
+function slowDownCircle() {
+  targetSpeed *= 0.92;
+}
+
+function revealFirstBlockPage1(){
+  const blocks = document.querySelectorAll("#page1 .reveal-block");
+  blocks[0].classList.add("visible");
+  if ("vibrate" in navigator) navigator.vibrate([10]); 
+  index = 1; 
+}
+
+function revealFirstBlockPage2(){
+  const blocks = document.querySelectorAll("#page2 .reveal-block");
+  blocks[0].classList.add("visible");
+  if ("vibrate" in navigator) navigator.vibrate([10]);
+  index = 1;
+}
+
+const icons = document.querySelectorAll('.music-icons-footer');
+
+function activarHolografico() {
+  icons.forEach(icon => icon.classList.add('holoicons'));
+}
+
+function desactivarHolografico() {
+  icons.forEach(icon => icon.classList.remove('holoicons'));
+}
+
+
+// Detectar click y tap
+document.body.addEventListener("click", advanceText);
+document.body.addEventListener("touchstart", advanceText);
+
+function haptic(pattern = [12]) {
+  if ("vibrate" in navigator) {
+    navigator.vibrate(pattern);
+  }
+}
+f
+
+</script>
+
+</body>
 </html>
